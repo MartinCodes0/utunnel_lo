@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Determine CPU architecture
+# تعیین معماری سیستم
 ARCH=$(uname -m)
 
-# Map architecture to download URL
+# تعیین آدرس دانلود بر اساس معماری
 case $ARCH in
     "x86_64")
         URL="https://github.com/aliamg1356/utunnel/releases/download/v1.0.0/utunnel_manager_amd64"
@@ -20,18 +20,31 @@ case $ARCH in
         ;;
 esac
 
-# Download the appropriate version
-echo "Downloading utunnel_manager for $ARCH..."
-wget -O utunnel_manager $URL || curl -o utunnel_manager $URL
+# بررسی وجود فایل و سالم بودن
+if [ -x ./utunnel_manager ]; then
+    echo "utunnel_manager already exists and is executable. Skipping download."
+else
+    echo "Downloading utunnel_manager for $ARCH..."
+    
+    # بررسی اینکه wget یا curl نصب است
+    if command -v wget > /dev/null; then
+        wget -O utunnel_manager "$URL"
+    elif command -v curl > /dev/null; then
+        curl -L -o utunnel_manager "$URL"
+    else
+        echo "Error: Neither wget nor curl is installed."
+        exit 1
+    fi
 
-if [ ! -f "utunnel_manager" ]; then
-    echo "Failed to download utunnel_manager"
-    exit 1
+    # بررسی موفقیت دانلود
+    if [ ! -f "utunnel_manager" ]; then
+        echo "Failed to download utunnel_manager"
+        exit 1
+    fi
+
+    chmod +x utunnel_manager
 fi
 
-# Make it executable
-chmod +x utunnel_manager
-
-# Run the manager
+# اجرای فایل
 echo "Starting utunnel_manager..."
 ./utunnel_manager
