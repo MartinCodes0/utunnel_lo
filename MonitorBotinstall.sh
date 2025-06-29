@@ -44,11 +44,16 @@ install_monitorbot() {
     echo -e "${YELLOW}Creating installation directory...${NC}"
     mkdir -p "$INSTALL_DIR"
 
-    # Download
-    echo -e "${YELLOW}Downloading MonitorBot package...${NC}"
-    if ! wget -O "$TEMP_ARCHIVE" "https://raw.githubusercontent.com/aliamg1356/utunnel/refs/heads/main/monitorbot.tar.gz"; then
-        echo -e "${RED}Error: Download failed${NC}"
-        exit 1
+    # Obtain package
+    if [ -f "monitorbot.tar.gz" ]; then
+        echo -e "${YELLOW}Using local monitorbot.tar.gz package...${NC}"
+        cp monitorbot.tar.gz "$TEMP_ARCHIVE"
+    else
+        echo -e "${YELLOW}Downloading MonitorBot package...${NC}"
+        if ! wget -O "$TEMP_ARCHIVE" "https://raw.githubusercontent.com/aliamg1356/utunnel/refs/heads/main/monitorbot.tar.gz"; then
+            echo -e "${RED}Error: Download failed${NC}"
+            exit 1
+        fi
     fi
 
     # Extract
