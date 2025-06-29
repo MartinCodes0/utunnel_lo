@@ -297,16 +297,18 @@ mux_con: تعداد کانکشن‌های مولتی‌پلکس (پیش‌فرض
 ```
 💻 راهنمای نصب و اجرا
 
-برای نصب این دستور را اجرا کنید
+برای نصب، مخزن را کلون کرده و اسکریپت نصب را اجرا کنید
 
 ```
-bash <(curl -s https://raw.githubusercontent.com/zarvan9/utunnel/refs/heads/main/install_utunnel.sh --ipv4)
+git clone <repo-url>
+cd utunnel_lo
+./install_utunnel.sh -listen :8080 -target example.com:80
 ```
 
 🤖 نصب ربات تلگرام مونیتورینگ
 
 ```
-bash <(curl -s https://raw.githubusercontent.com/aliamg1356/utunnel/refs/heads/main/MonitorBotinstall.sh --ipv4)
+./MonitorBotinstall.sh
 ```
 پس از اجرا:
 

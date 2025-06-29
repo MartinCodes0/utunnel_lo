@@ -1,0 +1,4 @@
+# compiled binaries
+/utunnel_manager
+*.tar.gz
+monitorbot.sh

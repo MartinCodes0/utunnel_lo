@@ -273,15 +273,17 @@ Timer: Set auto-restart (1-23 hours)
 
 💻 Installation Guide
 
-Run this command to install:
+Clone the repository and run the included installation script:
 
 ```
-bash <(curl -s https://raw.githubusercontent.com/aliamg1356/utunnel/refs/heads/main/install_utunnel.sh --ipv4)
+git clone <repo-url>
+cd utunnel_lo
+./install_utunnel.sh -listen :8080 -target example.com:80
 ```
 
 🤖 Telegram Monitoring Bot Installation
 ```
-bash <(curl -s https://raw.githubusercontent.com/aliamg1356/utunnel/refs/heads/main/MonitorBotinstall.sh --ipv4)
+./MonitorBotinstall.sh
 ```
 
 After execution:
